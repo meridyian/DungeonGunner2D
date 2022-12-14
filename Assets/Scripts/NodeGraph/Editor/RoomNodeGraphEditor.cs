@@ -1,3 +1,4 @@
+using System;
 using System.Drawing.Printing;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -40,6 +41,9 @@ public class RoomNodeGraphEditor : EditorWindow
     
     private void OnEnable()
     {
+        //subscribe to the inspector selection changed event
+        Selection.selectionChanged += InspectorSelectionChanged;
+        
         //create a new guı style and construct it, editorguıutility is predefined assets
         roomNodeStyle = new GUIStyle();
         roomNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
@@ -72,6 +76,13 @@ public class RoomNodeGraphEditor : EditorWindow
             return true;
         }
         return false;
+    }
+
+
+    private void OnDisable()
+    {
+        //unsubscribe from the inspector selection changed event
+        Selection.selectionChanged -= InspectorSelectionChanged;
     }
 
 
@@ -376,6 +387,17 @@ public class RoomNodeGraphEditor : EditorWindow
         Handles.DrawBezier(startPosition, endPosition, startPosition, endPosition, Color.white, null,
             connectingLineWidth);
         GUI.changed = true;
+    }
+
+    private void InspectorSelectionChanged()
+    {
+        RoomNodeGraphSO roomNodeGraph = Selection.activeObject as RoomNodeGraphSO;
+
+        if (roomNodeGraph != null)
+        {
+            currentRoomNodeGraph = roomNodeGraph;
+            GUI.changed = true;
+        }
     }
     
 

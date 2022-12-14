@@ -11,10 +11,10 @@ public class RoomNodeSO : ScriptableObject
     //just create core members
 
     //system generated gui id, hide it you will use it later on for validation check
-    public string id;
+    [HideInInspector] public string id;
     //parent and child room node id list
-    public List<string> parentRoomNodeIDList = new List<string>();
-    public List<string> childRoomNodeIDList = new List<string>();
+    [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
+    [HideInInspector] public List<string> childRoomNodeIDList = new List<string>();
     //containing room node graph
     [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
     public RoomNodeTypeSO roomNodeType;

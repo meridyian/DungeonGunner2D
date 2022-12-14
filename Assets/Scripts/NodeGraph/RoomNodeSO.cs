@@ -46,7 +46,7 @@ public class RoomNodeSO : ScriptableObject
         
         //Display a popup using the RoomNodeType name values that can be selected from (default to the currently set roomNodeType)
         int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
-        int selection = EditorGUILayout.Popup(" ", selected, GetRoomNodeTypesToDisplay());
+        int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay());
 
         roomNodeType = roomNodeTypeList.list[selection];
         

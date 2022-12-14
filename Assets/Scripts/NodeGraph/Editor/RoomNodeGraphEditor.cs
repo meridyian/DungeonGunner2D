@@ -142,7 +142,7 @@ public class RoomNodeGraphEditor : EditorWindow
     }
 
     // draw room nodes in the graph window
-    public void DrawRoomNodes()
+    private void DrawRoomNodes()
     {
         // loop through all room nodes and draw them
         foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)

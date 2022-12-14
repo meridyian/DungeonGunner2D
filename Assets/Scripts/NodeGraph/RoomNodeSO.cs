@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 public class RoomNodeSO : ScriptableObject
@@ -24,6 +25,8 @@ public class RoomNodeSO : ScriptableObject
 #if UNITY_EDITOR
 
     [HideInInspector] public Rect rect;
+    [HideInInspector] public bool isLeftClickDragging = false;
+    [HideInInspector] public bool isSelected = false;
 
     public void Initialise(Rect rect, RoomNodeGraphSO nodeGraph, RoomNodeTypeSO roomNodeType)
     {
@@ -74,6 +77,108 @@ public class RoomNodeSO : ScriptableObject
             return roomArray;
             
         }
+
+        public void ProcessEvents(Event currentEvent)
+        {
+            //what type of interaction is happening in editor
+            switch (currentEvent.type)
+            {
+                //process mouse down events
+                case EventType.MouseDown:
+                    ProcessMouseDownEvent(currentEvent);
+                    break;
+                        
+                //process mouse up events
+                case EventType.MouseUp:
+                    ProcessMouseUpEvent(currentEvent);
+                    break;
+                //process mouse drag events 
+                case EventType.MouseDrag:
+                    ProcessMouseDragEvent(currentEvent);
+                    break;
+                
+                default:
+                    break;
+                
+            }
+
+        }
+
+        private void ProcessMouseDownEvent(Event currentEvent)
+        {
+            // left click down
+            if (currentEvent.button == 0)
+            {
+                ProcessLeftClickDownEvent();
+            }
+        }
+
+        private void ProcessLeftClickDownEvent()
+        {
+            Selection.activeObject = this;
+            
+            //Toggle node selection
+            //isSelected != isSelected;
+            if (isSelected == true)
+            {
+                isSelected = false;
+            }
+            else
+            {
+                isSelected = true; 
+            }
+        }
+        private void ProcessMouseUpEvent(Event currentEvent)
+        {
+            // left click down
+            if (currentEvent.button == 0)
+            {
+                ProcessLeftClickUpEvent();
+            }
+        }
+
+        private void ProcessLeftClickUpEvent()
+        {
+            if (isLeftClickDragging)
+            {
+                isLeftClickDragging = false;
+            }
+        }
+
+        private void ProcessMouseDragEvent(Event currentEvent)
+        {
+            //process left click drag event
+            if (currentEvent.button == 0)
+            {
+                ProcessLeftMouseDragEvent(currentEvent);
+            }
+        }
+
+        private void ProcessLeftMouseDragEvent(Event currentEvent)
+        {
+            isLeftClickDragging = true;
+
+            DragNode(currentEvent.delta);
+            GUI.changed = true;
+        }
+
+        public void DragNode(Vector2 delta)
+        {
+            rect.position += delta;
+            EditorUtility.SetDirty(this);
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 #endif
 

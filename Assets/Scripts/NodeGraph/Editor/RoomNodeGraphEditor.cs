@@ -208,7 +208,7 @@ public class RoomNodeGraphEditor : EditorWindow
         menu.AddItem(new GUIContent("Select All Room Nodes"), false, SelectAllRoomNodes);
         menu.AddSeparator("");
         menu.AddItem(new GUIContent("Delete Selected Room Node Links"), false, DeleteSelectedRoomNodeLinks);
-        menu.AddItem(new GUIContent("Delete Selected Room Node "), false, DeleteSelectedRoomNodeLinks);
+        menu.AddItem(new GUIContent("Delete Selected Room Node "), false, DeleteSelectedRoomNodes);
         
         
         menu.ShowAsContext();
@@ -390,7 +390,7 @@ public class RoomNodeGraphEditor : EditorWindow
                 if (currentRoomNodeGraph.roomNodeToDrawLineFrom.AddChildRoomNodeIDToRoomNode(roomNode.id))
                 {
                     //set parent id in child room node
-                    roomNode.AddCParentRoomNodeIDToRoomNode(currentRoomNodeGraph.roomNodeToDrawLineFrom.id);
+                    roomNode.AddParentRoomNodeIDToRoomNode(currentRoomNodeGraph.roomNodeToDrawLineFrom.id);
                 }
             }
             

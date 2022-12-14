@@ -59,9 +59,43 @@ public class RoomNodeSO : ScriptableObject
 
             //Display a popup using the RoomNodeType name values that can be selected from (default to the currently set roomNodeType)
             int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
+            
             int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay());
 
             roomNodeType = roomNodeTypeList.list[selection];
+            
+            
+            // if the room type selection has changed making child connections potentially invalid
+            if (roomNodeTypeList.list[selected].isCorridor && !roomNodeTypeList.list[selection].isCorridor ||
+                !roomNodeTypeList.list[selected].isCorridor && roomNodeTypeList.list[selection].isCorridor ||
+                !roomNodeTypeList.list[selected].isBossRoom && roomNodeTypeList.list[selection].isBossRoom)
+            {
+                // if a room node type has been changed and it already has children then delete the parent child links since we need to revalidate any 
+                if (childRoomNodeIDList.Count > 0)
+                {
+                    for (int i = childRoomNodeIDList.Count - 1; i >= 0; i--) 
+                    {
+                        //get child room node
+                        RoomNodeSO childRoomNode = roomNodeGraph.GetRoomNode(childRoomNodeIDList[i]);
+
+                        if (childRoomNode != null)
+                        {
+                            //remove childid from parent room node
+                            RemoveChildRoomNodeIDFromRoomNode(childRoomNode.id);
+                            
+                            //remove parentid from child room node
+                            childRoomNode.RemoveChildRoomNodeIDFromRoomNode(id);
+                        }
+
+
+                    }
+                }
+            };
+
+
+
+
+
         }
 
         if (EditorGUI.EndChangeCheck())
@@ -290,7 +324,7 @@ public class RoomNodeSO : ScriptableObject
     
     
     
-    public bool AddCParentRoomNodeIDToRoomNode(string parentID)
+    public bool AddParentRoomNodeIDToRoomNode(string parentID)
     {
         parentRoomNodeIDList.Add(parentID);
         return true;

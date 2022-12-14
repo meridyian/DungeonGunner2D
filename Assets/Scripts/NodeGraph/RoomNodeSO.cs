@@ -8,7 +8,7 @@ public class RoomNodeSO : ScriptableObject
     //its assets will be created in editor
     //just create core members
 
-    //system generated gui id
+    //system generated gui id, hide it you will use it later on for validation check
     [HideInInspector] public string id;
     //parent and child room node id list
     [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
@@ -145,6 +145,7 @@ public class RoomNodeSO : ScriptableObject
         {
             ProcessLeftClickUpEvent();
         }
+        
     }
 
     private void ProcessLeftClickUpEvent()
@@ -176,6 +177,18 @@ public class RoomNodeSO : ScriptableObject
     {
         rect.position += delta;
         EditorUtility.SetDirty(this);
+    }
+
+    public bool AddChildRoomNodeIDToRoomNode(string childID)
+    {
+        childRoomNodeIDList.Add(childID);
+        return true;
+    }
+    
+    public bool AddCParentRoomNodeIDToRoomNode(string parentID)
+    {
+        parentRoomNodeIDList.Add(parentID);
+        return true;
     }
 #endif
     #endregion Editor Code

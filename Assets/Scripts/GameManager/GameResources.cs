@@ -13,7 +13,7 @@ public class GameResources : MonoBehaviour
             
             if (instance == null)
             {
-                
+                // to load an obj of type gameresources into instance
                 instance = Resources.Load<GameResources>("GameResources");
             }
             return instance;

@@ -12,12 +12,15 @@ public static class  HelperUtilities
         if (stringToCheck == "")
         {
             Debug.Log(fieldName + " is empty and must contain a value in object" + thisObject.name.ToString());
+            //have validation error
             return true;
         }
 
         return false;
     }
     
+    
+    // checks if the thing you passed is empty
     
     public static bool ValidateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
     {

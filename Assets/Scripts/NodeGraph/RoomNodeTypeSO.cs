@@ -40,9 +40,11 @@ public class RoomNodeTypeSO : ScriptableObject
     #endregion Header
     public bool isNone;
     
-    //to detect changes in inspector 
+    
     #region Validation
+    //only runs in unity editor
 #if UNITY_EDITOR
+    //to detect changes in inspector 
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(roomNodeTypeName), roomNodeTypeName);

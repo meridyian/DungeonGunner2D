@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoomNodeTypeListSO", menuName = "Scriptable Objects/Dungeon/Room Node Type List")]
 public class RoomNodeTypeListSO : ScriptableObject
 {
+    //we have 10 different types of rooms
     #region Header ROOM NODE TYPE LIST
     [Space(10)]
     [Header("ROOM NODE TYPE LIST")]

@@ -18,6 +18,7 @@ public class RoomNodeGraphEditor : EditorWindow
     
     // connecting line values
     private const float connectingLineWidth = 3f;
+    private const float connectingLineArrowSize = 6f;
 
     //node layout values
     private const float nodeWidth = 160f;
@@ -73,6 +74,9 @@ public class RoomNodeGraphEditor : EditorWindow
             DrawDraggedLine();
             //Preocess events, like mouse clicks etc
             ProcessEvents(Event.current);
+            
+            // draw connections between room nodes
+            DrawRoomConnections();
             
             // draw room nodes
             DrawRoomNodes();
@@ -272,6 +276,64 @@ public class RoomNodeGraphEditor : EditorWindow
 
         GUI.changed = true;
 
+    }
+
+    private void DrawRoomConnections()
+    {
+        //loop through all room nodes
+        foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
+        {
+            if (roomNode.childRoomNodeIDList.Count > 0)
+            {
+                //loop through child room nodes
+                foreach (string childRoomNodeID in roomNode.childRoomNodeIDList)
+                {
+                    //get child room node from dictionary
+                    if (currentRoomNodeGraph.roomNodeDictionary.ContainsKey(childRoomNodeID))
+                    {
+                        DrawConnectionLine(roomNode, currentRoomNodeGraph.roomNodeDictionary[childRoomNodeID]);
+
+                        GUI.changed = true;
+                    }
+                }
+            }
+            //get child room nodes
+            
+        }
+      
+    }
+
+    private void DrawConnectionLine(RoomNodeSO parentRoomNode, RoomNodeSO childRoomNode)
+    {
+        //get line start and end position
+        Vector2 startPosition = parentRoomNode.rect.center;
+        Vector2 endPosition = childRoomNode.rect.center;
+        
+        //calculate midway point
+        Vector2 midPosition = (endPosition + startPosition) / 2f;
+        
+        //vector from start to end position of line
+        Vector2 direction = endPosition - startPosition;
+        
+        //calculate normalized perpendicular positions from the mid point
+        Vector2 arrowTailPoint1 =
+            midPosition - new Vector2(-direction.y, direction.x).normalized * connectingLineArrowSize;
+        Vector2 arrowTailPoint2 =
+            midPosition + new Vector2(-direction.y, direction.x).normalized * connectingLineArrowSize;
+        
+        //calculate mid point offset ğposition for arrow head
+        Vector2 arrowHeadPoint = midPosition + direction.normalized * connectingLineArrowSize;
+         
+        //draw arrow
+        Handles.DrawBezier(arrowHeadPoint, arrowTailPoint1, arrowHeadPoint, arrowTailPoint1, Color.white, null,
+            connectingLineWidth);
+        Handles.DrawBezier(arrowHeadPoint, arrowTailPoint2, arrowHeadPoint, arrowTailPoint2, Color.white, null,
+            connectingLineWidth);
+        
+        //draw line
+        Handles.DrawBezier(startPosition, endPosition, startPosition, endPosition, Color.white, null,
+            connectingLineWidth);
+        GUI.changed = true;
     }
     
 

@@ -62,126 +62,123 @@ public class RoomNodeSO : ScriptableObject
     
         //Populate a string array with the room node types to display that can be selected
 
-        public string[] GetRoomNodeTypesToDisplay()
+    public string[] GetRoomNodeTypesToDisplay()
+    {
+        string[] roomArray = new string[roomNodeTypeList.list.Count];
+        for (int i = 0; i < roomNodeTypeList.list.Count; i++)
         {
-            string[] roomArray = new string[roomNodeTypeList.list.Count];
-            for (int i = 0; i < roomNodeTypeList.list.Count; i++)
+            if (roomNodeTypeList.list[i].displayInNodeGraphEditor)
             {
-                if (roomNodeTypeList.list[i].displayInNodeGraphEditor)
-                {
-                    roomArray[i] = roomNodeTypeList.list[i].roomNodeTypeName;
+                roomArray[i] = roomNodeTypeList.list[i].roomNodeTypeName;
                     
-                }
             }
-
-            return roomArray;
-            
         }
 
-        public void ProcessEvents(Event currentEvent)
+        return roomArray;
+            
+    }
+
+    public void ProcessEvents(Event currentEvent)
+    {
+        //what type of interaction is happening in editor
+        switch (currentEvent.type)
         {
-            //what type of interaction is happening in editor
-            switch (currentEvent.type)
-            {
-                //process mouse down events
-                case EventType.MouseDown:
-                    ProcessMouseDownEvent(currentEvent);
-                    break;
+            //process mouse down events
+            case EventType.MouseDown:
+                ProcessMouseDownEvent(currentEvent);
+                break;
                         
-                //process mouse up events
-                case EventType.MouseUp:
-                    ProcessMouseUpEvent(currentEvent);
-                    break;
-                //process mouse drag events 
-                case EventType.MouseDrag:
-                    ProcessMouseDragEvent(currentEvent);
-                    break;
+            //process mouse up events
+            case EventType.MouseUp:
+                ProcessMouseUpEvent(currentEvent);
+                break;
+            //process mouse drag events 
+            case EventType.MouseDrag:
+                ProcessMouseDragEvent(currentEvent);
+                break;
                 
-                default:
-                    break;
+            default:
+                break;
                 
-            }
-
         }
 
-        private void ProcessMouseDownEvent(Event currentEvent)
-        {
-            // left click down
-            if (currentEvent.button == 0)
-            {
-                ProcessLeftClickDownEvent();
-            }
-        }
+    }
 
-        private void ProcessLeftClickDownEvent()
+    private void ProcessMouseDownEvent(Event currentEvent)
+    {
+        // left click down
+        if (currentEvent.button == 0)
         {
-            Selection.activeObject = this;
+            ProcessLeftClickDownEvent();
+        }
+        // right click down 
+        else if (currentEvent.button == 1)
+        {
+            ProcessRightClickDownEvent(currentEvent);
+        }
+    }
+
+    private void ProcessLeftClickDownEvent()
+    {
+        Selection.activeObject = this;
             
-            //Toggle node selection
-            //isSelected != isSelected;
-            if (isSelected == true)
-            {
-                isSelected = false;
-            }
-            else
-            {
-                isSelected = true; 
-            }
+        //Toggle node selection
+        //isSelected != isSelected;
+        if (isSelected == true)
+        { 
+            isSelected = false;
         }
-        private void ProcessMouseUpEvent(Event currentEvent)
+        else
+        { 
+            isSelected = true; 
+        }
+    }
+
+    private void ProcessRightClickDownEvent(Event currentEvent)
+    {
+        roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
+    }
+    private void ProcessMouseUpEvent(Event currentEvent)
+    {
+        // left click down
+        if (currentEvent.button == 0)
         {
-            // left click down
-            if (currentEvent.button == 0)
-            {
-                ProcessLeftClickUpEvent();
-            }
+            ProcessLeftClickUpEvent();
         }
+    }
 
-        private void ProcessLeftClickUpEvent()
+    private void ProcessLeftClickUpEvent()
+    {
+        if (isLeftClickDragging)
         {
-            if (isLeftClickDragging)
-            {
-                isLeftClickDragging = false;
-            }
+            isLeftClickDragging = false;
         }
+    }
 
-        private void ProcessMouseDragEvent(Event currentEvent)
+    private void ProcessMouseDragEvent(Event currentEvent)
+    {
+        //process left click drag event
+        if (currentEvent.button == 0)
         {
-            //process left click drag event
-            if (currentEvent.button == 0)
-            {
-                ProcessLeftMouseDragEvent(currentEvent);
-            }
+            ProcessLeftMouseDragEvent(currentEvent);
         }
+    }
 
-        private void ProcessLeftMouseDragEvent(Event currentEvent)
-        {
-            isLeftClickDragging = true;
+    private void ProcessLeftMouseDragEvent(Event currentEvent)
+    {
+        isLeftClickDragging = true;
 
-            DragNode(currentEvent.delta);
-            GUI.changed = true;
-        }
+        DragNode(currentEvent.delta); 
+        GUI.changed = true;
+    }
 
-        public void DragNode(Vector2 delta)
-        {
-            rect.position += delta;
-            EditorUtility.SetDirty(this);
-        }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
+    public void DragNode(Vector2 delta)
+    {
+        rect.position += delta;
+        EditorUtility.SetDirty(this);
+    }
 #endif
-
     #endregion Editor Code
+
 
 }

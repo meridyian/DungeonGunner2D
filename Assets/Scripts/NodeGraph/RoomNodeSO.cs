@@ -12,13 +12,12 @@ public class RoomNodeSO : ScriptableObject
 
     //system generated gui id, hide it you will use it later on for validation check
     [HideInInspector] public string id;
-    //parent and child room node id list
     [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
     [HideInInspector] public List<string> childRoomNodeIDList = new List<string>();
+    
     //containing room node graph
     [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
     public RoomNodeTypeSO roomNodeType;
-    //list for types
     [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
     
     #region Editor Code
@@ -264,7 +263,30 @@ public class RoomNodeSO : ScriptableObject
         return true;
 
     }
-    
+    //remove childID from the node (returns true if the node has been removed, false otherwise)
+    public bool RemoveChildRoomNodeIDFromRoomNode(string childID)
+    {
+        //if the node contains the child ID then remove it
+        if (childRoomNodeIDList.Contains(childID))
+        {
+            childRoomNodeIDList.Remove(childID);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool RemoveParentRoomNodeIDFromRoomNode(string parentID)
+    {
+        //if the node contains the parent ID then remove it
+        if (parentRoomNodeIDList.Contains(parentID))
+        {
+            parentRoomNodeIDList.Remove((parentID));
+            return true;
+        }
+
+        return false;
+    }
     
     
     

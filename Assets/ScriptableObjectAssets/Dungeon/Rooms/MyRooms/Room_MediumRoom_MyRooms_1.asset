@@ -10,52 +10,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2708e4084c4a1534ba646096300f778c, type: 3}
-  m_Name: Room_MediumRoom_Catacombs_5
+  m_Name: Room_MediumRoom_MyRooms_1
   m_EditorClassIdentifier: 
-  guid: b36f53909ff86b54b9482a92d7feafbe
-  prefab: {fileID: 4327421925113694216, guid: 5777d9b32c458844c9f6dc22d09d0cab, type: 3}
-  previousPrefab: {fileID: 4327421925113694216, guid: 5777d9b32c458844c9f6dc22d09d0cab, type: 3}
+  guid: 193b43e654bc3448981adb479e410774
+  prefab: {fileID: 3895237355298716388, guid: 173d795fa3b1f42ffa0d5582810d51d1, type: 3}
+  previousPrefab: {fileID: 3895237355298716388, guid: 173d795fa3b1f42ffa0d5582810d51d1, type: 3}
   roomNodeType: {fileID: 11400000, guid: defee887916b547ff9dc97c2dcf5d08f, type: 2}
-  lowerBounds: {x: 2, y: 0}
-  upperBounds: {x: 44, y: 48}
+  lowerBounds: {x: -11, y: -11}
+  upperBounds: {x: 42, y: 38}
   doorwayList:
-  - position: {x: 23, y: 48}
+  - position: {x: 2, y: 38}
     orientation: 0
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 20, y: 48}
+    doorwayStartCopyPosition: {x: -1, y: 38}
     doorwayCopyTileWidth: 5
-    doorwayCopyTileHeight: 9
+    doorwayCopyTileHeight: 7
     isConnected: 0
     isUnavailable: 0
-  - position: {x: 23, y: 0}
+  - position: {x: 29, y: -11}
     orientation: 2
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 20, y: 4}
+    doorwayStartCopyPosition: {x: 26, y: -8}
     doorwayCopyTileWidth: 5
-    doorwayCopyTileHeight: 5
+    doorwayCopyTileHeight: 4
     isConnected: 0
     isUnavailable: 0
-  - position: {x: 44, y: 11}
+  - position: {x: 42, y: 25}
     orientation: 1
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 40, y: 17}
-    doorwayCopyTileWidth: 5
+    doorwayStartCopyPosition: {x: 37, y: 31}
+    doorwayCopyTileWidth: 6
     doorwayCopyTileHeight: 8
     isConnected: 0
     isUnavailable: 0
-  - position: {x: 2, y: 11}
+  - position: {x: -11, y: 0}
     orientation: 3
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 2, y: 17}
-    doorwayCopyTileWidth: 5
+    doorwayStartCopyPosition: {x: -11, y: 6}
+    doorwayCopyTileWidth: 6
     doorwayCopyTileHeight: 8
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
-  - {x: 16, y: 38}
-  - {x: 30, y: 38}
-  - {x: 15, y: 25}
-  - {x: 30, y: 25}
-  - {x: 11, y: 9}
-  - {x: 23, y: 8}
-  - {x: 36, y: 8}
+  - {x: -3, y: 25}
+  - {x: 8, y: 25}
+  - {x: 24, y: 25}
+  - {x: 34, y: 25}
+  - {x: 24, y: 0}
+  - {x: 34, y: 0}
+  - {x: -4, y: 0}
+  - {x: 6, y: 0}

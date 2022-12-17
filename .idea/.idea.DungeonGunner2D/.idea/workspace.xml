@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Doorway.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/DungeonLevelSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/RoomTemplateSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/Enums.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager/GameResources.cs" root0="FORCE_HIGHLIGHTING" />
@@ -75,7 +76,7 @@
       <updated>1670928815187</updated>
       <workItem from="1670928818217" duration="6104000" />
       <workItem from="1670999541920" duration="31499000" />
-      <workItem from="1671181919771" duration="6254000" />
+      <workItem from="1671181919771" duration="8565000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,9 @@ guid: 5bf318ff1695141f895cbde569091d5a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - roomNodeTypeList: {instanceID: 0}
+  - dimmedMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

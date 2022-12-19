@@ -16,9 +16,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/Enums.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager/GameResources.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Health/Health.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeGraphSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeTypeSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CurrentPlayerSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerDetailsSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/HelperUtilities.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -80,7 +83,7 @@
       <updated>1670928815187</updated>
       <workItem from="1670928818217" duration="6104000" />
       <workItem from="1670999541920" duration="31499000" />
-      <workItem from="1671181919771" duration="40286000" />
+      <workItem from="1671181919771" duration="41560000" />
     </task>
     <servers />
   </component>

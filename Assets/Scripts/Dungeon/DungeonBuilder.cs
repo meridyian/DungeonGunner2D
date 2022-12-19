@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 [DisallowMultipleComponent]
@@ -548,7 +550,32 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
    // Instantiate the dungeon room gameobject from the prefab
    private void InstantiateRoomGameobjects()
    {
-      
+      // Iterate through all dungeon rooms
+      foreach (KeyValuePair<string, Room> keyvaluepair in dungeonBUilderRoomDictionary)
+      {
+         Room room = keyvaluepair.Value;
+
+         Vector3 roomPosition = new Vector3(room.lowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
+
+         //instantiate room
+
+         GameObject roomGameobject = Instantiate(room.prefab, roomPosition, Quaternion.identity, transform);
+         
+         // get instantiated room component from instantiated prefab
+         InstantiatedRoom instantiatedRoom = roomGameobject.GetComponentInChildren<InstantiatedRoom>();
+
+         instantiatedRoom.room = room;
+         
+         // initialise the instantiated room
+         
+         instantiatedRoom.Initialise(roomGameobject);
+
+         // save gameobject referance
+         room.instantiatedRoom = instantiatedRoom;
+
+         
+      }
+ 
    }
    
    

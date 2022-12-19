@@ -555,7 +555,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
       {
          Room room = keyvaluepair.Value;
 
-         Vector3 roomPosition = new Vector3(room.lowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
+         Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
 
          //instantiate room
 

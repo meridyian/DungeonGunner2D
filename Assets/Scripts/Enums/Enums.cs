@@ -6,6 +6,18 @@
     west,
     none
 }
+
+
+public enum AimDirection
+{
+    Up,
+    UpRight,
+    UpLeft,
+    Right,
+    Left,
+    Down
+    
+}
 // different gamestates
 public enum GameState
 {

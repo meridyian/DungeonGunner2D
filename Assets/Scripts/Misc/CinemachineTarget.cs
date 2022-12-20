@@ -27,11 +27,11 @@ public class CinemachineTarget : MonoBehaviour
     private void SetCinemachineTargetGroup()
     {
         // create target group for cinemachine for the cinemachine camera to follow
-        CinemachineTargetGroup.Target cinemachineGrouplTarget_player = new CinemachineTargetGroup.Target
+        CinemachineTargetGroup.Target cinemachineGroupTarget_player = new CinemachineTargetGroup.Target
             { weight = 1f, radius = 1f, target = GameManager.Instance.GetPlayer().transform };
 
         CinemachineTargetGroup.Target[] cinemachineTargetArray = new CinemachineTargetGroup.Target[]
-            { cinemachineGrouplTarget_player };
+            { cinemachineGroupTarget_player };
         cinemachineTargetGroup.m_Targets = cinemachineTargetArray;
         
         

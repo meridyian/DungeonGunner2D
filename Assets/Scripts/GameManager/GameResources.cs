@@ -44,7 +44,7 @@ public class GameResources : MonoBehaviour
 
     #endregion Tooltip
 
-    public CurrentPlayerSO CurrentPlayer;
+    public CurrentPlayerSO currentPlayer;
     
     #region Header MATERIALS
 

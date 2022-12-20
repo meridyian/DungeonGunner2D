@@ -25,8 +25,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     #endregion Tooltip
 
-    [SerializeField]
-    private List<DungeonLevelSO> dungeonLevelList;
+    [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
     
     #region Tooltip
 
@@ -36,7 +35,40 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     [SerializeField] private int currentDungeonLevelListIndex = 0;
 
+    private Room currentRoom;
+    private Room previousRoom;
+    private PlayerDetailsSO playerDetails;
+    private Player player;
+
     [HideInInspector] public GameState gameState;
+
+    // bcs gamemanager inherits from singleton 
+    // override the awake method in monobehaviour
+
+    protected override void Awake()
+    {
+        //call base class
+        base.Awake();
+        
+        // set player details - saved in current player scriptable object from the main menu
+        playerDetails = GameResources.Instance.currentPlayer.playerDetails;
+
+        InstantiatePlayer();
+
+
+    }
+    
+    
+    // create player in scene at position
+    private void InstantiatePlayer()
+    {
+        GameObject playerGameObject = Instantiate(playerDetails.playerPrefab);
+
+        player = playerGameObject.GetComponent<Player>();
+        
+        player.Initialize(playerDetails);
+        
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -69,6 +101,19 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                 break;
         }
     }
+    
+    // set the current room the player is in
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
+        
+        // Debug
+        //Debug.Log(room.prefab.name.ToString());
+    }
+    
+    
+    
 
     private void PlayDungeonLevel(int dungeonLevelListIndex)
     {
@@ -80,7 +125,20 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         {
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
+        
+        // set player roughly mid-room
+        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x)  / 2f, ( currentRoom.lowerBounds.y +currentRoom.upperBounds.y)/2f, 0);
 
+        player.gameObject.transform.position =
+            HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+        
+
+    }
+    
+    // get the current room the player is in
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
     }
     
     #region Validation

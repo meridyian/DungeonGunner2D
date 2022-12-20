@@ -135,6 +135,15 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     }
     
+    // get the player
+    public Player GetPlayer()
+    {
+        return player;
+    }
+    
+    
+    
+    
     // get the current room the player is in
     public Room GetCurrentRoom()
     {

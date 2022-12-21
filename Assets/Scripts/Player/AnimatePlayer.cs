@@ -17,6 +17,8 @@ public class AnimatePlayer : MonoBehaviour
 
     private void OnEnable()
     {
+        player.movementByVelocityEvent.OnMovementByVelocity += MovementByVelocityEvent_OnMovementByVelocity;
+        
         // subscribe to idle event 
         player.idleEvent.OnIdle += IdleEvent_OnIdle;
         
@@ -27,6 +29,9 @@ public class AnimatePlayer : MonoBehaviour
     
     private void OnDisable()
     {
+        
+        player.movementByVelocityEvent.OnMovementByVelocity -= MovementByVelocityEvent_OnMovementByVelocity;
+        
         // unsubscribe to idle event 
         player.idleEvent.OnIdle -= IdleEvent_OnIdle;
         
@@ -35,8 +40,19 @@ public class AnimatePlayer : MonoBehaviour
         
     }
     
-    // on idle event handler
+    // on movement by velocity event handler
+    private void MovementByVelocityEvent_OnMovementByVelocity(MovementByVelocityEvent movementByVelocityEvent,
+        MovementByVelocityArgs movementByVelocityArgs)
+    {
+        SetMovementAnimationParameters();
+    }
     
+    
+    
+    
+    
+    
+    // on idle event handler
     private void IdleEvent_OnIdle(IdleEvent idleEvent)
     {
         SetIdleAnimationParameters();
@@ -59,6 +75,15 @@ public class AnimatePlayer : MonoBehaviour
         player.animator.SetBool(Settings.aimDown, false);
         
     }
+    
+    
+    private void SetMovementAnimationParameters()
+    {
+        player.animator.SetBool(Settings.isMoving, true);
+        player.animator.SetBool(Settings.isIdle, false);
+    }
+    
+    
     
     // set movement animation parameters
     private void SetIdleAnimationParameters()

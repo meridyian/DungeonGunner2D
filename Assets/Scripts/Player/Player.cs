@@ -9,6 +9,8 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Idle))]
 [RequireComponent(typeof(PlayerControl))]
 [RequireComponent(typeof(AimWeaponEvent))]
+[RequireComponent(typeof(MovementByVelocity))]
+[RequireComponent(typeof(MovementByVelocityEvent))]
 [RequireComponent(typeof(AimWeapon))]
 [RequireComponent(typeof(AnimatePlayer))]
 [RequireComponent(typeof(SortingGroup))]
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
 {
     [HideInInspector] public PlayerDetailsSO playerDetails;
     [HideInInspector] public Health health;
+    [HideInInspector] public MovementByVelocityEvent movementByVelocityEvent;
     [HideInInspector] public IdleEvent idleEvent;
     [HideInInspector] public AimWeaponEvent aimWeaponEvent;
     [HideInInspector] public SpriteRenderer spriteRenderer;
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
     {
         // load components
         health = GetComponent<Health>();
+        movementByVelocityEvent = GetComponent<MovementByVelocityEvent>();
         idleEvent = GetComponent<IdleEvent>();
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
         spriteRenderer = GetComponent<SpriteRenderer>();

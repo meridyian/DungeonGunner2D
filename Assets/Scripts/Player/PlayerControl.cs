@@ -8,6 +8,15 @@ public class PlayerControl : MonoBehaviour
 {
     #region Tooltip
 
+    [Tooltip("MovementDetailsSO scriptable object movement details such as speed")]
+
+    #endregion Tooltip
+
+    [SerializeField] private MovementDetailsSO movementDetails;
+    
+    
+    #region Tooltip
+
     [Tooltip("The player weaponShootPosition gameobject in the hierarchy")]
 
     #endregion Tooltip
@@ -15,10 +24,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Transform weaponShootPosition;
 
     private Player player;
+    private float moveSpeed;
 
     private void Awake()
     {
         player = GetComponent<Player>();
+        moveSpeed = movementDetails.GetMoveSpeed();
     }
 
     private void Update()
@@ -28,11 +39,40 @@ public class PlayerControl : MonoBehaviour
         
         // process the player weapon input
         WeaponInput();
+        
     }
 
     private void MovementInput()
     {
-        player.idleEvent.CallIdleEvent();
+
+        // get movement input
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        float verticalMovement = Input.GetAxisRaw("Vertical");
+        
+        // create a direction vector with the movement inputs
+        Vector2 direction = new Vector2(horizontalMovement, verticalMovement);
+        
+        // each time it moves 1 unit except the cases that there are two direction inputs
+        // 2(1/2) is greater than one unit so it creating a 1 unit movement on diagonal requires 0.7 on each axis
+        
+        // adjust distance for diagonal movement 
+        if (horizontalMovement != 0f && verticalMovement != 0f)
+        {
+            direction *= 0.7f;
+        }
+        
+        // if there is movement
+        if (direction != Vector2.zero)
+        {
+            // trigger movement event
+            player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed);
+        }
+        else
+        //else trigger idle event
+        {
+            player.idleEvent.CallIdleEvent();
+        }
+
     }
 
     private void WeaponInput()
@@ -69,6 +109,17 @@ public class PlayerControl : MonoBehaviour
         // trigger weapon aim event
         player.aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
     }
+
+    #region Validation
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(movementDetails), movementDetails);
+        
+    }
+    
+#endif
+    #endregion Validation
     
       
 }

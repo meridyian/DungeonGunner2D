@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager/GameResources.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Health/Health.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/CinemachineTarget.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Movement/IdleEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeGraphSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NodeGraph/RoomNodeTypeSO.cs" root0="FORCE_HIGHLIGHTING" />
@@ -87,7 +88,7 @@
       <workItem from="1670999541920" duration="31499000" />
       <workItem from="1671181919771" duration="41603000" />
       <workItem from="1671516498539" duration="9699000" />
-      <workItem from="1671555525637" duration="3285000" />
+      <workItem from="1671555525637" duration="3645000" />
     </task>
     <servers />
   </component>

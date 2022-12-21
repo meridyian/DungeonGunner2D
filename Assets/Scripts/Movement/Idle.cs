@@ -18,17 +18,17 @@ public class Idle : MonoBehaviour
         idleEvent = GetComponent<IdleEvent>();
         
     }
+    
+    private void OnEnable()
+    {
+        idleEvent.OnIdle += IdleEvent_OnIdle;
+    }
     private void OnDisable()
     {
         idleEvent.OnIdle -= IdleEvent_OnIdle;
     }
     
-
-    private void OnEnable()
-    {
-        idleEvent.OnIdle += IdleEvent_OnIdle;
-    }
-
+    
     private void IdleEvent_OnIdle(IdleEvent idleEvent)
     {
         MoveRigidBody();

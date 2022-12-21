@@ -11,10 +11,10 @@ public class AimWeaponEvent : MonoBehaviour
    // create action delegates
    public event Action<AimWeaponEvent, AimWeaponEventArgs> OnWeaponAim;
 
-   public void CallAimWeaponEvent(AimDirection aimDirection, float aimAngle, float weaponAngle,
+   public void CallAimWeaponEvent(AimDirection aimDirection, float aimAngle, float weaponAimAngle,
        Vector3 weaponAimDirectionVector)
    {
-       OnWeaponAim?.Invoke(this, new AimWeaponEventArgs(){ aimDirection =  aimDirection, aimAngle = aimAngle, weaponAimAngle = weaponAngle, weaponAimDirectionVector = weaponAimDirectionVector});
+       OnWeaponAim?.Invoke(this, new AimWeaponEventArgs(){ aimDirection =  aimDirection, aimAngle = aimAngle, weaponAimAngle = weaponAimAngle, weaponAimDirectionVector = weaponAimDirectionVector});
    }
 }
 

@@ -8,20 +8,18 @@ using Vector2 = System.Numerics.Vector2;
 [DisallowMultipleComponent]
 public class AimWeaponEvent : MonoBehaviour
 {
-    public event Action<AimWeaponEvent, AimWeaponEventArgs> OnWeaponAim;
+   // create action delegates
+   public event Action<AimWeaponEvent, AimWeaponEventArgs> OnWeaponAim;
 
-    public void CallAimWeaponEvent(AimDirection aimDirection, float aimAngle, float weaponAimAngle ,Vector3 weaponAimDirectionVector)
-    {
-        OnWeaponAim?.Invoke(this, new AimWeaponEventArgs()
-        {
-            aimDirection = aimDirection, aimAngle = aimAngle, weaponAimAngle = weaponAimAngle,
-            weaponAimDirectionVector = weaponAimDirectionVector
-        });
-    }
-    
+   public void CallAimWeaponEvent(AimDirection aimDirection, float aimAngle, float weaponAngle,
+       Vector3 weaponAimDirectionVector)
+   {
+       OnWeaponAim?.Invoke(this, new AimWeaponEventArgs(){ aimDirection =  aimDirection, aimAngle = aimAngle, weaponAimAngle = weaponAngle, weaponAimDirectionVector = weaponAimDirectionVector});
+   }
 }
 
 
+// extend event args 
 public class AimWeaponEventArgs : EventArgs
 {
     public AimDirection aimDirection;

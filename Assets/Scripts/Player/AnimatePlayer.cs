@@ -92,8 +92,6 @@ public class AnimatePlayer : MonoBehaviour
                 break;
             
             
-            
-            
         }
     }
 

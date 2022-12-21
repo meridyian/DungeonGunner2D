@@ -7,8 +7,10 @@ using UnityEngine.Rendering;
 #region REQUIRE COMPONENTS
 [RequireComponent(typeof(IdleEvent))]
 [RequireComponent(typeof(Idle))]
+[RequireComponent(typeof(PlayerControl))]
 [RequireComponent(typeof(AimWeaponEvent))]
 [RequireComponent(typeof(AimWeapon))]
+[RequireComponent(typeof(AnimatePlayer))]
 [RequireComponent(typeof(SortingGroup))]
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(SpriteRenderer))]

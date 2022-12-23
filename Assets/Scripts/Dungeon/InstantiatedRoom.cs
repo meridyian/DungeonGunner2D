@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -26,6 +27,19 @@ public class InstantiatedRoom : MonoBehaviour
         
         // save room collider bounds
         roomColliderBounds = boxCollider2D.bounds;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // if the player triggered the collider
+        if (collision.tag == Settings.playerTag && room != GameManager.Instance.GetCurrentRoom())
+        {
+            // set room as visited
+            this.room.isPreviouslyVisited = true;
+            
+            // call room changed event
+            StaticEventHandler.CallRoomChangedEvent(room);
+        }
     }
 
     public void Initialise(GameObject roomGameobject)
@@ -231,7 +245,20 @@ public class InstantiatedRoom : MonoBehaviour
                     door.transform.localPosition =
                         new Vector3(doorway.position.x, doorway.position.y + tileDistance * 1.25f, 0f);
                 }
+                
+                // get door component
+                Door doorComponent = door.GetComponent<Door>();
+                
+                // set if door is part of a boss room
+                if (room.roomNodeType.isBossRoom)
+                {
+                    doorComponent.isBossRoomDoor = true;
                     
+                    // lock the door to prevent access to the room
+                    doorComponent.LockDoor();
+                }
+                
+
             }
             
         }

@@ -76,7 +76,7 @@ public class GameResources : MonoBehaviour
 
     #endregion
 
-    public Shader variableShader;
+    public Shader variableLitShader;
     
     #region Validation
 #if UNITY_EDITOR
@@ -87,7 +87,7 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(currentPlayer), currentPlayer);
         HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(variableShader), variableShader);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
         
     }
     

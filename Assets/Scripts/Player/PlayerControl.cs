@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private MovementDetailsSO movementDetails;
     
-    
+      
     #region Tooltip
 
     [Tooltip("The player weaponShootPosition gameobject in the hierarchy")]

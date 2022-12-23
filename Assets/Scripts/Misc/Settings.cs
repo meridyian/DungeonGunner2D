@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public static class Settings 
 {
     //instantiate as static -- it cannot be instantiated but we can access its values by using class name
     
+    #region UNITS
+    public const float pixelsPerUnit = 16f;
+    public const float tileSizePixels = 16f;
+    #endregion
+
     #region DUNGEON BUILD SETTINGS
 
     public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
@@ -34,5 +40,17 @@ public static class Settings
     public static int rollLeft = Animator.StringToHash("rollLeft");
     public static int rollUp = Animator.StringToHash("rollUp");
     public static int rollDown = Animator.StringToHash("rollDown");
+    
+    // Animator parameters - Door
+    public static int open = Animator.StringToHash("open");
+
     #endregion
+    
+    #region GAMEOBJECT TAGS
+
+    public const string playerTag = "Player";
+    public const string playerWeapon = "playerWeapon";
+    
+    #endregion
+
 }

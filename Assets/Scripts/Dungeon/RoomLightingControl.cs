@@ -70,5 +70,28 @@ public class RoomLightingControl : MonoBehaviour
             yield return null;
         }
         
+        // set material back to lit material
+        instantiatedRoom.groundTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+        instantiatedRoom.decoration1Tilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+        instantiatedRoom.decoration2Tilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+        instantiatedRoom.frontTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+        instantiatedRoom.minimapTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+        
+
     }
+
+
+    private void FadeInDoors()
+    {
+        Door[] doorArray = GetComponentsInChildren<Door>();
+
+        foreach (Door door in doorArray)
+        {
+            DoorLightingControl doorLightingControl = door.GetComponentInChildren<DoorLightingControl>();
+            
+            doorLightingControl.FadeInDoor(door);
+            
+        }
+    }
+    
 }

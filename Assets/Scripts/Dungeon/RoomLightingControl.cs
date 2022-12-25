@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,5 +7,68 @@ using UnityEngine.Tilemaps;
 [RequireComponent(typeof(InstantiatedRoom))]
 public class RoomLightingControl : MonoBehaviour
 {
+    private InstantiatedRoom instantiatedRoom;
+
+    private void Awake()
+    {
+        // load components
+        instantiatedRoom = GetComponent<InstantiatedRoom>();
+    }
+
+    private void OnEnable()
+    {
+        //subscribe to roo changed event
+        StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+    }
     
+    private void OnDisable()
+    {
+        //subscribe to roo changed event
+        StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+    }
+    
+    
+    
+    // handle rooom changed event
+    private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
+    {
+        // if this is the room entered and the room isn't alredy lit, then fade in the room light
+        if (roomChangedEventArgs.room == instantiatedRoom.room && !instantiatedRoom.room.isLit)
+        {
+            // fade in room
+            FadeInRoomLightning();
+            
+            // fade in the room doors lightning
+            FadeInDoors();
+
+            instantiatedRoom.room.isLit = true;
+
+        }
+    }
+
+    private void FadeInRoomLightning()
+    {
+        //fade in the lightning fpr the room tilemaps
+        StartCoroutine(FadeInRoomLightningRoutine(instantiatedRoom));
+    }
+    
+    // fade in room lightning coroutine
+    private IEnumerator FadeInRoomLightningRoutine(InstantiatedRoom instantiatedRoom)
+    {
+        // create material to fade in
+        Material material = new Material(GameResources.Instance.variableLitShader);
+
+        instantiatedRoom.groundTilemap.GetComponent<TilemapRenderer>().material = material;
+        instantiatedRoom.decoration1Tilemap.GetComponent<TilemapRenderer>().material = material;
+        instantiatedRoom.decoration2Tilemap.GetComponent<TilemapRenderer>().material = material;
+        instantiatedRoom.frontTilemap.GetComponent<TilemapRenderer>().material = material;
+        instantiatedRoom.minimapTilemap.GetComponent<TilemapRenderer>().material = material;
+
+        for (float i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
+        {
+            material.SetFloat("Alpha_Slider", i);
+            yield return null;
+        }
+        
+    }
 }

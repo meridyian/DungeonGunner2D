@@ -83,7 +83,7 @@ public class InstantiatedRoom : MonoBehaviour
             {
                 collisionTilemap = tilemap;
             }
-            else if(tilemap.gameObject.tag == "minmapTilemap")
+            else if(tilemap.gameObject.tag == "minimapTilemap")
             {
                 minimapTilemap = tilemap;
             }

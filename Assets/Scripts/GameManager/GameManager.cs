@@ -126,6 +126,10 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
         
+        // callm static event that room has changed
+        StaticEventHandler.CallRoomChangedEvent(currentRoom);
+        
+        
         // set player roughly mid-room
         player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x)  / 2f, ( currentRoom.lowerBounds.y +currentRoom.upperBounds.y)/2f, 0);
 

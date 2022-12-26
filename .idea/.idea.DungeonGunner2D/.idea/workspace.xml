@@ -38,6 +38,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerDetailsSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StaticEvents/StaticEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Test/EnemyAnimation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Test/EnemyObjectPoolTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/HelperUtilities.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapons/AimWeaponEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Maze/Assets/Scripts/FpsMovement.cs" root0="SKIP_HIGHLIGHTING" />
@@ -105,7 +107,7 @@
       <workItem from="1671555525637" duration="26069000" />
       <workItem from="1671780505474" duration="6777000" />
       <workItem from="1671794204179" duration="14254000" />
-      <workItem from="1672072491191" duration="1767000" />
+      <workItem from="1672072491191" duration="4382000" />
     </task>
     <servers />
   </component>

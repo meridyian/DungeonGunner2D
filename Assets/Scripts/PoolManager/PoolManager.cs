@@ -16,7 +16,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     private Transform objectpoolTransform;
     private Dictionary<int, Queue<Component>> poolDictionary = new Dictionary<int, Queue<Component>>();
 
-
+    
     [System.Serializable]
     public struct Pool
     {
@@ -25,18 +25,21 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
         public string componentType;
     }
 
+    // create object pools on start
     private void Start()
     {
         // this singleton gameobject will be the object pool parent
         objectpoolTransform = this.gameObject.transform;
         
-        // create object pools on start
+
         for (int i = 0; i < poolArray.Length; i++)
         {
             CreatePool(poolArray[i].prefab, poolArray[i].poolSize, poolArray[i].componentType);
             
         }
     }
+    
+    
     
     // create the object pool with the specified prefabs and the specified pool size for each
     private void CreatePool(GameObject prefab, int poolSize, string componentType)
@@ -59,6 +62,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
                 
                 newObject.SetActive(false);
                 
+                //?
                 poolDictionary[poolKey].Enqueue(newObject.GetComponent(Type.GetType(componentType)));
             }
         }
@@ -103,7 +107,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     } 
     
     
-    // reset the gameobject
+    // step 5 reset the gameobject position rotation and scale
 
     private void ResetObject(Vector3 position, Quaternion rotation, Component componentToReuse, GameObject prefab)
     {

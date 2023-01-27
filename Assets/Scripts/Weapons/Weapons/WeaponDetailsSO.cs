@@ -40,10 +40,10 @@ public class WeaponDetailsSO : ScriptableObject
     #endregion Tooltip
     public Vector3 weaponShootPosition;
     
-    //#region Tooltip
-    //[Tootip("Weapon current ammo")]
-    //#endregion Tooltip
-    //public AmmoDetailsSO weaponCurrentAmmo;
+    #region Tooltip
+    [Tooltip("Weapon current ammo")]
+    #endregion Tooltip
+    public AmmoDetailsSO weaponCurrentAmmo;
     
     #region Header WEAPON OPERATING VALUES
 

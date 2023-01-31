@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameResources : MonoBehaviour
 {
@@ -78,6 +79,29 @@ public class GameResources : MonoBehaviour
 
     public Shader variableLitShader;
     
+    #region Header SPECIAL TILEMAP TILES
+
+    [Space(10)]
+    [Header("SPECIAL TILEMAP TILES")]
+
+    #endregion Header SPECIAL TILEMAP TILES
+
+    #region Tooltip
+
+    [Tooltip("Collision tiles that the enemies can navigate to")]
+
+    #endregion Tooltip
+
+    public TileBase[] enemyUnwalkableCollisionTileArray;
+    
+    #region Tooltip
+
+    [Tooltip("Preferred path tile for enemy navigation")]
+
+    #endregion Tooltip
+
+    public TileBase preferredEnemyPathTile;
+    
     #region Validation
 #if UNITY_EDITOR
     // Validate the scriptable object details entered
@@ -88,7 +112,10 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
-        
+        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyUnwalkableCollisionTileArray),
+            enemyUnwalkableCollisionTileArray);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
+        //HelperUtilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
     }
     
 #endif
